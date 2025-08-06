@@ -9,6 +9,7 @@
     <router-view/>
   </ConfigProvider>
 </template>
+
 <script setup lang="ts">
 import { ConfigProvider } from '@jetlinks-web/components'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'

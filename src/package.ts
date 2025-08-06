@@ -43,6 +43,7 @@ const _handleReconnect = async () => {
     document.body.appendChild(modalWrapper);
     return await modalApp?.open?.();
 }
+
 export const initAxios = () => {
     crateAxios(
         {
