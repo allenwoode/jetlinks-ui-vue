@@ -206,12 +206,6 @@ importers:
 
   src/modules/device-manager-ui:
     dependencies:
-      '@fortawesome/fontawesome-svg-core':
-        specifier: ^7.0.0
-        version: 7.0.0
-      '@fortawesome/free-solid-svg-icons':
-        specifier: ^7.0.0
-        version: 7.0.0
       '@xterm/addon-fit':
         specifier: ^0.10.0
         version: 0.10.0(@xterm/xterm@5.5.0)
@@ -533,10 +527,6 @@ packages:
 
   '@fortawesome/fontawesome-svg-core@7.0.0':
     resolution: {integrity: sha512-obBEF+zd98r/KtKVW6A+8UGWeaOoyMpl6Q9P3FzHsOnsg742aXsl8v+H/zp09qSSu/a/Hxe9LNKzbBaQq1CEbA==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/free-solid-svg-icons@7.0.0':
-    resolution: {integrity: sha512-njSLAllkOddYDCXgTFboXn54Oe5FcvpkWq+FoetOHR64PbN0608kM02Lze0xtISGpXgP+i26VyXRQA0Irh3Obw==}
     engines: {node: '>=6'}
 
   '@fortawesome/vue-fontawesome@3.1.1':
@@ -2922,10 +2912,6 @@ snapshots:
   '@fortawesome/fontawesome-common-types@7.0.0': {}
 
   '@fortawesome/fontawesome-svg-core@7.0.0':
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 7.0.0
-
-  '@fortawesome/free-solid-svg-icons@7.0.0':
     dependencies:
       '@fortawesome/fontawesome-common-types': 7.0.0
 
