@@ -9,4 +9,4 @@
 	url = git@github.com:allenwoode/device-manager-ui.git
 [submodule "src/modules/authentication-manager-ui"]
 	path = src/modules/authentication-manager-ui
-	url = git@github.com:jetlinks-v2/authentication-manager-ui.git
+	url = git@github.com:allenwoode/authentication-manager-ui.git
