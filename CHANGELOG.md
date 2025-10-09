@@ -1,5 +1,9 @@
 # 更新日志
 
+## 2.12
+* 系统管理 - 租户资产管理配置功能
+* 设备管理 - 租户资产数据查询和统计，超级管理员不进行资产隔离
+
 
 ## 2.10.0
 * 拆分 [系统管理](https://github.com/jetlinks-v2/authentication-manager-ui)

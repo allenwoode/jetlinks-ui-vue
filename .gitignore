@@ -13,6 +13,7 @@ dist-ssr
 *.local
 components.d.ts
 apps
+docker
 
 # Editor directories and files
 .vscode

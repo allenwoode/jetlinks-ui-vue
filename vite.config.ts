@@ -9,6 +9,7 @@ import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 import { optimizeDeps, registerModulesAlias, copyImagesPlugin } from './configs/plugin'
 import progress from 'vite-plugin-progress'
 import * as path from 'path'
+import postcssImport from 'postcss-import'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -88,6 +89,11 @@ export default defineConfig(({ mode }) => {
         },
         css: {
             preprocessorOptions: {
+                css: {
+                    postcss: [
+                        postcssImport(),
+                    ]
+                },
                 less: {
                     modifyVars: {
                         'root-entry-name': 'variable',

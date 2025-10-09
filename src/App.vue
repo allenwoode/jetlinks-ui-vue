@@ -20,7 +20,7 @@ import theme from '../configs/theme'
 import { useAuthStore, useSystemStore } from '@/store';
 import { ComponentsEnum } from '@jetlinks-web/constants'
 import {initPackages} from "@/package";
-import { setToken} from "@jetlinks-web/utils";
+import { setToken } from "@jetlinks-web/utils";
 
 const route = useRoute()
 
@@ -35,6 +35,7 @@ const componentsLocale = {
   en: componentsEnUS,
   zh: componentsZhCN
 }
+
 // 为公共hooks提供权限校验方法
 const { hasPermission } = useAuthStore();
 
@@ -57,4 +58,5 @@ window.addEventListener('vite:preloadError', (event) => {
 })
 
 </script>
-<style scoped></style>
+<style scoped>
+</style>
