@@ -1,4 +1,4 @@
-import {getTargetModule} from "./modules-loader";
+//import {getTargetModule} from "./modules-loader";
 
 export const modules = () => {
   const modulesMap = {}

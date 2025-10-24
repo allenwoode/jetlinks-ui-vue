@@ -1,0 +1,9 @@
+{
+  "name": "customer-manager-ui",
+  "id": "customer-manager",
+  "version": "1.0.0",
+  "description": "JetLinks customer module",
+  "main": "index.ts",
+  "dependencies": {},
+  "peerDependencies": {}
+}

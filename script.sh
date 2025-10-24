@@ -3,6 +3,11 @@
 #rm -rf ./dist
 #rm -rf ./src/modules/device-manager-ui/dist
 #---------------------------------------------------------------
+# customer-manager
+pnpm build:modules --modules=customer-manager
+
+cp -r ./dist ./src/modules/customer-manager-ui/
+
 
 # device-manager
 pnpm build:modules --modules=device-manager

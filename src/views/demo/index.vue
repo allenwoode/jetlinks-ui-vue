@@ -5,7 +5,7 @@
     </div>
     <j-permission-button
       type="primary"
-      hasPermission="DataCollect/Channel:add1"
+      hasPermission="demo:add"
       @click="() => {console.log('caozuo')}"
     >
       <template #icon>
@@ -13,6 +13,8 @@
       </template>
       测试
     </j-permission-button>
+
+
 
     <permission-button
       type="primary"
@@ -23,7 +25,9 @@
       <template #button>
         button
       </template>
+      你好
     </permission-button>
+
     <a-table-card
       name="卡片标题"
       width="400px"
@@ -31,8 +35,10 @@
       <template #content>
         中间内容
       </template>
+      中间内容
     </a-table-card>
   </j-page-container>
+  
   <div style="width: 100%; height: 300px">
     <init-Amap
       @dragstart="mapClick"
