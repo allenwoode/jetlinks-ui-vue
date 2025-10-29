@@ -14,8 +14,6 @@
       测试
     </j-permission-button>
 
-
-
     <permission-button
       type="primary"
       :tooltip="{
@@ -38,7 +36,7 @@
       中间内容
     </a-table-card>
   </j-page-container>
-  
+
   <div style="width: 100%; height: 300px">
     <init-Amap
       @dragstart="mapClick"

@@ -207,6 +207,8 @@ importers:
 
   src/modules/authentication-manager-ui: {}
 
+  src/modules/customer-manager-ui: {}
+
   src/modules/device-manager-ui:
     dependencies:
       '@fortawesome/fontawesome-svg-core':

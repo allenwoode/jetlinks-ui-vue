@@ -3,6 +3,13 @@
 #rm -rf ./dist
 #rm -rf ./src/modules/device-manager-ui/dist
 #---------------------------------------------------------------
+
+
+# network-card-manager
+pnpm build:modules --modules=network-card-manager
+
+cp -r ./dist ./src/modules/network-card-manager-ui/
+
 # customer-manager
 pnpm build:modules --modules=customer-manager
 

@@ -70,7 +70,7 @@ const getSystemPermissionData = async ( BaseMenu: any[] ) => {
     const _count = menuCount(newTree);
     menusData.current = newTree;
     menusData.count = _count;
-    console.log(newTree)
+    //console.log(newTree)
   }
 };
 

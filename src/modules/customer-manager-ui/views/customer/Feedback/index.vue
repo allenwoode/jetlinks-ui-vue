@@ -22,7 +22,7 @@
         >
           <template #headerLeftRender>
             <j-permission-button
-              hasPermission="customer/Feedback:query"
+              :hasPermission="`${permission}:query`"
               type="primary"
               @click="table.refresh"
             >
@@ -48,7 +48,7 @@
           <template #createTime="slotProps">
             <span>{{ formatDateTime(slotProps.createTime) }}</span>
           </template>
-          <!-- <template #action1="slotProps">
+          <!-- <template #action="slotProps">
             <a-space :size="16">
               <j-permission-button
                   type="link"
@@ -65,7 +65,7 @@
               <j-permission-button
                 :disabled="i.disabled"
                 :popConfirm="i.popConfirm"
-                :hasPermission="'customer/Feedback:' + i.key"
+                :hasPermission="`${permission}:` + i.key"
                 :tooltip="{
                   ...i.tooltip,
                 }"
@@ -186,11 +186,11 @@
 <script setup lang="ts" name="Feedback">
 import { ref, reactive, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getFeedbackList_api, close_api, handle_api } from '@customer-manager/api/customer/feedback.ts';
+import { getFeedbackList_api, close_api, handle_api } from '@customer/api/customer/feedback.ts';
 import { onlyMessage } from "@jetlinks-web/utils";
 
 const { t: $t } = useI18n();
-const permission = 'system/Feedback';
+const permission = 'customer/Feedback';
 const saveRef = ref();
 
 // 日期格式化函数
