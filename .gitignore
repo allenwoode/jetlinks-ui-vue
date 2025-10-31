@@ -27,3 +27,5 @@ docker
 *.sln
 *.sw?
 .history
+
+*.tar

@@ -1,1 +1,123 @@
-[]
+[
+  {
+    "code": "customer",
+    "name": "客户管理",
+    "owner": "iot",
+    "i18nMessages": {
+      "name": {
+        "zh_CN": "客户管理",
+        "en_US": "Customer Management",
+        "en": "Customer Management"
+      }
+    },
+    "id": "bc01596641d6ba54fdde1a85ef4e5ea9",
+    "url": "/customer",
+    "icon": "icon-xitongguanli1",
+    "sortIndex": 4,
+    "permissions": [],
+    "buttons": [],
+    "children": [
+      {
+        "code": "customer/Feedback",
+        "name": "客户反馈",
+        "i18nMessages": {
+          "name": {
+            "zh_CN": "客户反馈",
+            "en_US": "Customer Feedback",
+            "en": "Customer Feedback"
+          }
+        },
+        "owner": "iot",
+        "id": "fe27d097f62005b19d3d437ef78b4009",
+        "sortIndex": 1,
+        "url": "/customer/Feedback",
+        "icon": "icon-shezhi",
+        "showPage": [],
+        "permissions": [],
+        "buttons": [
+          {
+            "id": "view",
+            "name": "查看",
+            "i18nMessages": {
+              "zh_CN": "查看",
+              "en_US": "View",
+              "en": "View"
+            },
+            "permissions": [
+              {
+                "permission": "",
+                "actions": [
+                  "query"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "update",
+            "name": "处理",
+            "i18nMessages": {
+              "zh_CN": "处理",
+              "en_US": "Handle",
+              "en": "Handle"
+            },
+            "permissions": [
+              {
+                "permission": "",
+                "actions": [
+                  "query",
+                  "save"
+                ]
+              },
+              {
+                "permission": "file",
+                "actions": [
+                  "upload-static"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "delete",
+            "name": "关闭",
+            "i18nMessages": {
+              "zh_CN": "关闭",
+              "en_US": "Close",
+              "en": "Close"
+            },
+            "permissions": [
+              {
+                "permission": "",
+                "actions": [
+                  "query",
+                  "save"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "query",
+            "name": "查询",
+            "i18nMessages": {
+              "zh_CN": "查询",
+              "en_US": "Query",
+              "en": "Query"
+            },
+            "permissions": [
+              {
+                "permission": "",
+                "actions": [
+                  "query"
+                ]
+              }
+            ]
+          }
+        ],
+        "accessSupport": {
+          "text": "不支持",
+          "value": "unsupported"
+        },
+        "supportDataAccess": false
+      }
+    ]
+  }
+]
