@@ -1,0 +1,185 @@
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+error_log /var/log/nginx/error.log;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+	##
+	# Basic Settings
+	##
+
+	sendfile on;
+	tcp_nopush on;
+	types_hash_max_size 2048;
+	# server_tokens off;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##
+	# SSL Settings
+	##
+
+	#ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	#ssl_prefer_server_ciphers on;
+
+	##
+	# Logging Settings
+	##
+
+	access_log /var/log/nginx/access.log;
+
+	##
+	# Gzip Settings
+	##
+
+	#gzip on;
+
+	# gzip_vary on;
+	# gzip_proxied any;
+	# gzip_comp_level 6;
+	# gzip_buffers 16 8k;
+	# gzip_http_version 1.1;
+	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+	##
+	# Virtual Host Configs
+	##
+
+	include /etc/nginx/conf.d/*.conf;
+	#include /etc/nginx/sites-enabled/*;
+
+	server {
+		#listen 80;
+		listen 443 ssl;
+
+		ssl_certificate /etc/letsencrypt/live/gam-net.com/fullchain.pem;
+		ssl_certificate_key /etc/letsencrypt/live/gam-net.com/privkey.pem;
+
+		#listen [::]:80;
+		#server_name _;
+
+		server_name gam-net.com www.gam-net.com;
+
+		gzip on;
+		gzip_min_length 1k;
+		gzip_comp_level 9;
+		gzip_types text/plain text/css text/javascript application/json application/javascript application/x-javascript application/xml;
+		gzip_vary on;
+		gzip_disable "MSIE [1-6]\.";
+		#resolver $NAMESERVERS ipv6=off;
+
+		add_header X-Content-Type-Options "nosniff" always;
+		add_header X-Frame-Options "SAMEORIGIN" always;        # 防止点击劫持
+		add_header X-XSS-Protection "1; mode=block" always;    # 启用XSS过滤
+		add_header Referrer-Policy "strict-origin-when-cross-origin" always; # 控制Referer信息
+
+		add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always; # 启用HSTS
+
+		# add_header Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' http://at.alicdn.com; style-src 'self' 'unsafe-inline';" always;
+		# add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+
+		server_tokens off;
+		include /etc/nginx/mime.types;
+		set $my_result_code 200;
+		set $my_server_name gam-net.com;
+		if ($http_Host !~* ^gam-net.com) {
+			set $my_result_code 403;
+		}
+
+		if ($my_server_name ~ "0") {
+			set $my_result_code 200;
+		}
+
+
+		if ($my_result_code = 403) {
+			return 403;
+		}
+
+		location / {
+			autoindex off;
+			root /usr/share/nginx/html;
+			index  index.html;
+			try_files $uri $uri/ /index.html;
+		}
+
+		location ^~/api/ {
+			add_header Access-Control-Allow-Origin "*";
+			add_header Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE, PATCH";
+			add_header Access-Control-Allow-Headers "Authorization, Content-Type";
+			if ($request_method = 'OPTIONS') {
+				return 204;
+			}
+			proxy_pass http://112.124.61.238:8848/;
+			# if ($request_uri ~* ^/api/(.*)$) {
+			#     proxy_pass {API_BASE_PATH}$1;
+			# }
+			#proxy_pass http://host.docker.internal:8840/;
+			proxy_set_header X-Forwarded-Proto $scheme;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP  $remote_addr;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_connect_timeout   1;
+			proxy_buffering off;
+			chunked_transfer_encoding off;
+			proxy_cache off;
+			proxy_send_timeout      30m;
+			proxy_read_timeout      30m;
+			client_max_body_size    500m;
+			client_body_buffer_size    1024k;
+		}
+
+		location ~* \.(?:ico|css|js|gif|jpe?g|png|woff2?|eot|ttf|svg|otf)$ {
+			root /usr/share/nginx/html; # 确保路径正确
+			expires 6M;
+			access_log off;
+			add_header Cache-Control "public";
+		}
+
+		location ~* ^/amap/ { # 避免高德地图静态资源
+			expires 1h;
+			add_header Cache-Control "no-cache";
+		}
+
+		location ~ /\.(?!well-known).* { # 禁止访问敏感文件
+			deny all;
+		}
+
+		error_page 404 /index.html;
+	}
+}
+    
+
+
+#mail {
+#	# See sample authentication script at:
+#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+#
+#	# auth_http localhost/auth.php;
+#	# pop3_capabilities "TOP" "USER";
+#	# imap_capabilities "IMAP4rev1" "UIDPLUS";
+#
+#	server {
+#		listen     localhost:110;
+#		protocol   pop3;
+#		proxy      on;
+#	}
+#
+#	server {
+#		listen     localhost:143;
+#		protocol   imap;
+#		proxy      on;
+#	}
+#}
