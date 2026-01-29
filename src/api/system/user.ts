@@ -34,7 +34,7 @@ export const queryUserListNoPaging = () => request.post(`/user/_query/no-paging`
 //获取角色列表
 export const getRoleList = (data:any) => request.post('/role/group/detail/_query/tree',data)
 // 获取组织列表
-export const getDepartmentList_api = (data:any) => request.post(`/organization/_all/tree`,data);
+export const getDepartmentList_api = (data:any) => request.post(`/organization/all/tree`,data);
 //
 // // 获取用户信息
 // export const getUser_api = (id: string) => request.get(`/user/detail/${id}`);
